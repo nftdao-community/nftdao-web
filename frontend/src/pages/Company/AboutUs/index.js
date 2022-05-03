@@ -64,7 +64,7 @@ function AboutUs() {
   // Setting up typedJS
   useEffect(() => {
     const typedJS = new Typed(typedJSRef.current, {
-      strings: ["team", "design", "tool"],
+      strings: ["For All", "By All"],
       typeSpeed: 90,
       backSpeed: 90,
       backDelay: 200,
@@ -124,14 +124,14 @@ function AboutUs() {
                 },
               })}
             >
-              Work with an amazing <span ref={typedJSRef} />
+              Amazing NFT project <span ref={typedJSRef} />
             </MKTypography>
             <MKTypography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
               We&apos;re constantly trying to express ourselves and actualize our dreams. If you
               have the opportunity to play this game
             </MKTypography>
             <MKButton color="default" sx={{ color: ({ palette: { dark } }) => dark.main }}>
-              create account
+              Log in with Web3
             </MKButton>
             <MKTypography variant="h6" color="white" mt={8} mb={1}>
               Find us on
