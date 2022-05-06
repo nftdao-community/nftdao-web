@@ -15,7 +15,6 @@ Coded by www.creative-tim.com
 
 import { useEffect, useRef } from "react";
 
-
 // rellax
 import Rellax from "rellax";
 
@@ -50,142 +49,180 @@ import footerRoutes from "footer.routes";
 import bgImage from "assets/images/bg-about-us.jpg";
 
 function AboutUs() {
+    if (window.ethereum) {
+        // Do something
+    } else {
+        alert("install metamask extension!!");
+    }
 
-  if(window.ethereum){
-    // Do something 
-  }else{
-    alert("install metamask extension!!")
-  }
+    const handleConnect = () => {
+        window.ethereum.request({ method: "eth_requestAccounts" });
+    };
 
-  const handleConnect = () => {
-    window.ethereum.request({method:'eth_requestAccounts'})
-  }
+    const headerRef = useRef(null);
+    const typedJSRef = useRef(null);
 
+    // Setting up rellax
+    useEffect(() => {
+        const parallax = new Rellax(headerRef.current, {
+            speed: -6,
+        });
 
+        return () => parallax.destroy();
+    }, []);
 
-  const headerRef = useRef(null);
-  const typedJSRef = useRef(null);
+    // Setting up typedJS
+    useEffect(() => {
+        const typedJS = new Typed(typedJSRef.current, {
+            strings: ["For All", "By All"],
+            typeSpeed: 90,
+            backSpeed: 90,
+            backDelay: 200,
+            startDelay: 500,
+            loop: true,
+        });
 
-  // Setting up rellax
-  useEffect(() => {
-    const parallax = new Rellax(headerRef.current, {
-      speed: -6,
-    });
+        return () => typedJS.destroy();
+    }, []);
 
-    return () => parallax.destroy();
-  }, []);
-
-  // Setting up typedJS
-  useEffect(() => {
-    const typedJS = new Typed(typedJSRef.current, {
-      strings: ["For All", "By All"],
-      typeSpeed: 90,
-      backSpeed: 90,
-      backDelay: 200,
-      startDelay: 500,
-      loop: true,
-    });
-
-    return () => typedJS.destroy();
-  }, []);
-
-  return (
-    <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "internal",
-          route: "/",
-          label: "Connect Wallet",
-          color: "default",
-        }}
-        transparent
-        light
-      />
-      <MKBox
-        ref={headerRef}
-        minHeight="75vh"
-        width="100%"
-        sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
-            `${linearGradient(
-              rgba(gradients.dark.main, 0.6),
-              rgba(gradients.dark.state, 0.6)
-            )}, url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "grid",
-          placeItems: "center",
-        }}
-      >
-        <Container>
-          <Grid
-            container
-            item
-            xs={12}
-            lg={8}
-            justifyContent="center"
-            alignItems="center"
-            flexDirection="column"
-            sx={{ mx: "auto", textAlign: "center" }}
-          >
-            <MKTypography
-              variant="h1"
-              color="white"
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
+    return (
+        <>
+            <DefaultNavbar
+                routes={routes}
+                action={{
+                    type: "internal",
+                    route: "/rlawlcns",
+                    label: "Connect Wallet",
+                    color: "default",
+                }}
+                transparent
+                light
+            />
+            <MKBox
+                ref={headerRef}
+                minHeight="75vh"
+                width="100%"
+                sx={{
+                    backgroundImage: ({
+                        functions: { linearGradient, rgba },
+                        palette: { gradients },
+                    }) =>
+                        `${linearGradient(
+                            rgba(gradients.dark.main, 0.6),
+                            rgba(gradients.dark.state, 0.6)
+                        )}, url(${bgImage})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    display: "grid",
+                    placeItems: "center",
+                }}
             >
-              Amazing NFT project <span ref={typedJSRef} />
-            </MKTypography>
-            <MKTypography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
-              We&apos;re constantly trying to express ourselves and actualize our dreams. If you
-              have the opportunity to play this game
-            </MKTypography>
-            <MKButton color="default" sx={{ color: ({ palette: { dark } }) => dark.main }} onClick={handleConnect}>
-              Log in with Web3
-            </MKButton>
-            <MKTypography variant="h6" color="white" mt={8} mb={1}>
-              Find us on
-            </MKTypography>
-            <MKBox display="flex" justifyContent="center" alignItems="center">
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
-                <i className="fab fa-facebook" />
-              </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
-                <i className="fab fa-instagram" />
-              </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
-                <i className="fab fa-twitter" />
-              </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#">
-                <i className="fab fa-google-plus" />
-              </MKTypography>
+                <Container>
+                    <Grid
+                        container
+                        item
+                        xs={12}
+                        lg={8}
+                        justifyContent="center"
+                        alignItems="center"
+                        flexDirection="column"
+                        sx={{ mx: "auto", textAlign: "center" }}
+                    >
+                        <MKTypography
+                            variant="h1"
+                            color="white"
+                            sx={({ breakpoints, typography: { size } }) => ({
+                                [breakpoints.down("md")]: {
+                                    fontSize: size["3xl"],
+                                },
+                            })}
+                        >
+                            Amazing NFT project <span ref={typedJSRef} />
+                        </MKTypography>
+                        <MKTypography
+                            variant="body1"
+                            color="white"
+                            opacity={0.8}
+                            mt={1}
+                            mb={3}
+                        >
+                            We&apos;re constantly trying to express ourselves
+                            and actualize our dreams. If you have the
+                            opportunity to play this game
+                        </MKTypography>
+                        <MKButton
+                            color="default"
+                            sx={{ color: ({ palette: { dark } }) => dark.main }}
+                            onClick={handleConnect}
+                        >
+                            Log in with Web3
+                        </MKButton>
+                        <MKTypography variant="h6" color="white" mt={8} mb={1}>
+                            Find us on
+                        </MKTypography>
+                        <MKBox
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            <MKTypography
+                                component="a"
+                                variant="body1"
+                                color="white"
+                                href="#"
+                                mr={3}
+                            >
+                                <i className="fab fa-facebook" />
+                            </MKTypography>
+                            <MKTypography
+                                component="a"
+                                variant="body1"
+                                color="white"
+                                href="#"
+                                mr={3}
+                            >
+                                <i className="fab fa-instagram" />
+                            </MKTypography>
+                            <MKTypography
+                                component="a"
+                                variant="body1"
+                                color="white"
+                                href="#"
+                                mr={3}
+                            >
+                                <i className="fab fa-twitter" />
+                            </MKTypography>
+                            <MKTypography
+                                component="a"
+                                variant="body1"
+                                color="white"
+                                href="#"
+                            >
+                                <i className="fab fa-google-plus" />
+                            </MKTypography>
+                        </MKBox>
+                    </Grid>
+                </Container>
             </MKBox>
-          </Grid>
-        </Container>
-      </MKBox>
-      <Card
-        sx={{
-          p: 2,
-          mx: { xs: 2, lg: 3 },
-          mt: -8,
-          mb: 4,
-          boxShadow: ({ boxShadows: { xxl } }) => xxl,
-        }}
-      >
-        <Information />
-        <Team />
-        <Featuring />
-        <Newsletter />
-      </Card>
-      <MKBox pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
-      </MKBox>
-    </>
-  );
+            <Card
+                sx={{
+                    p: 2,
+                    mx: { xs: 2, lg: 3 },
+                    mt: -8,
+                    mb: 4,
+                    boxShadow: ({ boxShadows: { xxl } }) => xxl,
+                }}
+            >
+                <Information />
+                <Team />
+                <Featuring />
+                <Newsletter />
+            </Card>
+            <MKBox pt={6} px={1} mt={6}>
+                <DefaultFooter content={footerRoutes} />
+            </MKBox>
+        </>
+    );
 }
 
 export default AboutUs;
