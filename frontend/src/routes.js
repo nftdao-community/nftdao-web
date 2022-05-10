@@ -97,6 +97,7 @@ import SocialButtons from "layouts/sections/elements/social-buttons";
 import Tables from "layouts/sections/elements/tables";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
+import MKButton from "components/MKButton";
 
 const routes = [
     {
@@ -129,13 +130,13 @@ const routes = [
                         component: <AboutUs />,
                     },
                     {
-                        name: "rlawlcns",
-                        route: "/rlawlcns",
-                        component: <AboutUs />,
-                    },
-                    {
                         name: "pricing",
                         route: "/pages/company/pricing",
+                        component: <Pricing />,
+                    },
+                    {
+                        name: "connect",
+                        route: "/pages/company/connect",
                         component: <Pricing />,
                     },
                 ],

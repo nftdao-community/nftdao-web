@@ -91,7 +91,7 @@ function AboutUs() {
                 routes={routes}
                 action={{
                     type: "internal",
-                    route: "/rlawlcns",
+                    route: "/connect",
                     label: "Connect Wallet",
                     color: "default",
                 }}
