@@ -13,5 +13,7 @@ npm run start
 ```
 cd backend
 npm install --force
-npm run watch
+npm run dev
 ```
+- URL : http://localhost:3000
+- API Swagger : http://localhost:3000/api-docs/
