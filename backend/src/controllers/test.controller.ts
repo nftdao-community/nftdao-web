@@ -15,4 +15,6 @@ export class TestController {
     //const findAllUsersData: User[] = await this.userService.findAllUser();
     return { data: "test", message: 'findAll' };
   }
+
+  
 }
