@@ -244,9 +244,3 @@ function derivePathPrefix() {
   );
 }
 
-module.exports = {
-  async rewrites() {
-    //array라서 source,destination 추가 가능
-    return [{ source: '/api/naver', destination: 'https://www.naver.com' }];
-  },
-};
