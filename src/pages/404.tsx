@@ -5,17 +5,10 @@ import {
   EuiPageTemplate,
   EuiImage,
 } from '@elastic/eui';
-import { useTheme } from '../components/theme';
 import { useRouter } from 'next/router';
 
 const NotFoundPage: FunctionComponent = () => {
-  const { colorMode } = useTheme();
 
-  const isDarkTheme = colorMode === 'dark';
-
-  const illustration = isDarkTheme
-    ? '/images/404_rainy_cloud_dark.png'
-    : '/images/404_rainy_cloud_light.png';
 
   const router = useRouter();
 
@@ -42,7 +35,6 @@ const NotFoundPage: FunctionComponent = () => {
             have been removed or renamed, or maybe it never existed.
           </p>
         }
-        icon={<EuiImage alt="" size="fullWidth" src={illustration} />}
         layout="vertical"
         title={<h2>Page not found</h2>}
         titleSize="m"

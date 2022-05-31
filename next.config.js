@@ -220,7 +220,13 @@ function derivePathPrefix() {
       const originUrl = gitConfig['remote "origin"'].url;
 
       // eslint-disable-next-line prettier/prettier
-      return '/' + originUrl.split('/').pop().replace(/\.git$/, '');
+      return (
+        '/' +
+        originUrl
+          .split('/')
+          .pop()
+          .replace(/\.git$/, '')
+      );
     }
   }
 
@@ -237,3 +243,10 @@ function derivePathPrefix() {
     "Can't derive path prefix, as neither .git/config nor package.json exists"
   );
 }
+
+module.exports = {
+  async rewrites() {
+    //array라서 source,destination 추가 가능
+    return [{ source: '/api/naver', destination: 'https://www.naver.com' }];
+  },
+};
