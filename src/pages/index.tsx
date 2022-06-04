@@ -1,48 +1,49 @@
 import { Fragment, FunctionComponent, useEffect, useState } from 'react';
 import {
-  EuiHeader, EuiHeaderSectionItem, EuiHeaderLogo, EuiHeaderLinks, EuiHeaderLink,
+  EuiHeader,
+  EuiHeaderSectionItem,
+  EuiHeaderLogo,
+  EuiHeaderLinks,
+  EuiHeaderLink,
   EuiButton,
   EuiContextMenuPanel,
   EuiPopover,
   useGeneratedHtmlId,
 } from '@elastic/eui';
 
-import { Web3Provider } from "@ethersproject/providers";
+import { Web3Provider } from '@ethersproject/providers';
 import { useWeb3React, Web3ReactProvider } from '@web3-react/core';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { ProposalForm } from '../dto/common.dto';
 
-
 const Index: FunctionComponent = () => {
-  const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 5, 42] });
+  const injected = new InjectedConnector({
+    supportedChainIds: [1, 3, 4, 5, 42],
+  });
   const context = useWeb3React();
-  const {
-    library,
-    chainId,
-    account,
-    activate,
-    deactivate,
-    active,
-    error,
-  } = context;
-
+  const { library, chainId, account, activate, deactivate, active, error } =
+    context;
 
   const [balance, setBalance] = useState<number>(0);
-  const [userProposal, setUserProposal] = useState<ProposalForm>
-    ({ content_url: "", user_key: '', title: '', description: '' })
+  const [userProposal, setUserProposal] = useState<ProposalForm>({
+    content_url: '',
+    user_key: '',
+    title: '',
+    description: '',
+  });
 
-  const onClickConnect = (e: React.MouseEvent<HTMLElement>) => { activate(injected) };
+  const onClickConnect = (e: React.MouseEvent<HTMLElement>) => {
+    activate(injected);
+  };
 
   useEffect(() => {
     if (!!account && !!library) {
-      library.getBalance(account).then((value) => {
+      library.getBalance(account).then(value => {
         setBalance(Number(value));
       });
     }
-    setUserProposal({ ...userProposal, user_key: account })
+    setUserProposal({ ...userProposal, user_key: account });
   }, [account, library, chainId, active]);
-
-
 
   const [isPopoverOpen, setPopover] = useState(false);
   const customContextMenuPopoverId = useGeneratedHtmlId({
@@ -58,8 +59,7 @@ const Index: FunctionComponent = () => {
       size="s"
       iconType="arrowDown"
       iconSide="right"
-      onClick={onButtonClick}
-    >
+      onClick={onButtonClick}>
       내 지갑
     </EuiButton>
   );
@@ -67,7 +67,6 @@ const Index: FunctionComponent = () => {
   const closePopover = () => {
     setPopover(false);
   };
-
 
   return (
     <div>
@@ -85,10 +84,12 @@ const Index: FunctionComponent = () => {
             isOpen={isPopoverOpen}
             closePopover={closePopover}
             panelPaddingSize="s"
-            anchorPosition="downLeft"
-          >
+            anchorPosition="downLeft">
             <EuiContextMenuPanel>
-              {active ? `당신의 지갑 주소는 :${account}입니다` : "지갑을 연결해주세요."}<br />
+              {active
+                ? `당신의 지갑 주소는 :${account}입니다`
+                : '지갑을 연결해주세요.'}
+              <br />
               {`잔액: ${balance} ETH`}
             </EuiContextMenuPanel>
           </EuiPopover>
@@ -97,6 +98,5 @@ const Index: FunctionComponent = () => {
     </div>
   );
 };
-
 
 export default Index;

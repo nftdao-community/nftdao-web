@@ -8,8 +8,6 @@ import {
 import { useRouter } from 'next/router';
 
 const NotFoundPage: FunctionComponent = () => {
-
-
   const router = useRouter();
 
   const handleClick = e => {

@@ -5,8 +5,6 @@ import { Web3Provider } from '@ethersproject/providers';
 import '@elastic/eui/dist/eui_theme_light.css';
 import { EuiProvider } from '@elastic/eui';
 
-
-
 function getLibrary(provider) {
   const library = new Web3Provider(provider);
   library.pollingInterval = 12000;
