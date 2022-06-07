@@ -108,33 +108,35 @@ const Proposal: FunctionComponent = () => {
           </EuiPopover>
         </EuiHeaderLinks>
       </EuiHeader>
-      <div>Add Content</div>
-      <div>지갑주소: {account}</div>
-      <input
-        placeholder="title"
-        value={userProposal.title}
-        onChange={e => {
-          setUserProposal({ ...userProposal, title: e.target.value });
-        }}
-      />
-      <br></br>
-      <input
-        placeholder="content_url"
-        value={userProposal.content_url}
-        onChange={e => {
-          setUserProposal({ ...userProposal, content_url: e.target.value });
-        }}
-      />
-      <br></br>
-      <input
-        placeholder="description"
-        value={userProposal.description}
-        onChange={e => {
-          setUserProposal({ ...userProposal, description: e.target.value });
-        }}
-      />
-      <br></br>
-      <button onClick={onSubmit}>submit</button>
+      <div style={{margin: "20px"}}>
+        <div>Add Content</div>
+        <div>지갑주소: {account}</div>
+        <input
+          placeholder="title"
+          value={userProposal.title}
+          onChange={e => {
+            setUserProposal({ ...userProposal, title: e.target.value });
+          }}
+        />
+        <br></br>
+        <input
+          placeholder="content_url"
+          value={userProposal.content_url}
+          onChange={e => {
+            setUserProposal({ ...userProposal, content_url: e.target.value });
+          }}
+        />
+        <br></br>
+        <input
+          placeholder="description"
+          value={userProposal.description}
+          onChange={e => {
+            setUserProposal({ ...userProposal, description: e.target.value });
+          }}
+        />
+        <br></br>
+        <button onClick={onSubmit}>submit</button>
+      </div>
     </div>
   );
 };

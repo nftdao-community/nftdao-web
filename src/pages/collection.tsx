@@ -103,13 +103,20 @@ const Collection: FunctionComponent = () => {
       </EuiHeader>
       {proposalList.map((element, index) => {
         return (
-          <ProposalElement
-            key={index}
-            description={element.description}
-            content_url={element.content_url}
-            user_key={element.user_key}
-            title={element.title}
-          />
+          <div>
+            <ProposalElement
+              key={index}
+              description={element.description}
+              content_url={element.content_url}
+              user_key={element.user_key}
+              title={element.title}
+            />
+            <EuiButton
+              size="s"
+              onClick={onButtonClick}>
+              투표하기
+            </EuiButton>
+          </div>
         );
       })}
     </div>
