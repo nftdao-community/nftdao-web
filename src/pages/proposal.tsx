@@ -108,7 +108,7 @@ const Proposal: FunctionComponent = () => {
           </EuiPopover>
         </EuiHeaderLinks>
       </EuiHeader>
-      <div style={{margin: "20px"}}>
+      <div style={{ margin: '20px' }}>
         <div>Add Content</div>
         <div>지갑주소: {account}</div>
         <input
