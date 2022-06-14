@@ -25,6 +25,7 @@ const Collection: FunctionComponent = () => {
     context;
 
   const [balance, setBalance] = useState<number>(0);
+  const [randomIntList, setRandomIntList] = useState<number[]>([]);
   const [proposalList, setProposalList] = useState<ProposalForm[]>([]);
 
   useEffect(() => {
@@ -35,6 +36,7 @@ const Collection: FunctionComponent = () => {
       .then(response => {
         const data = response.data.data;
         setProposalList(data);
+        setRandomIntList([88, 2, 9, 11, 3, 138, 54, 61, 92, 15, 106, 43, 10, 9, 2, 4, 16, 85, 119, 0, 0, 0, 13, 81, 13, 120, 2, 0, 16, 45, 0, 14, 23, 10, 8, 2, 14, 18, 117, 45, 6, 24, 18, 45, 79, 118, 33, 61, 15, 24, 173, 89, 11, 138, 18, 32, 103, 77, 46, 10, 11, 8, 22, 43, 34, 17, 48, 161, 3, 21, 95, 112, 24, 72, 31, 0, 79, 42, 10, 0, 56, 13, 9, 86, 1, 0, 49, 16, 2, 0, 0, 1, 151, 0, 0, 0, 22, 0, 11, 60]);
       });
   }, []);
 
@@ -51,8 +53,11 @@ const Collection: FunctionComponent = () => {
     prefix: 'customContextMenuPopover',
   });
 
-  const onButtonClick = () => {
-    setPopover(!isPopoverOpen);
+  const onButtonClick = (index) => {
+    return () => {
+      randomIntList[index] += 1
+      setPopover(!isPopoverOpen);
+    }
   };
 
   const button = (
@@ -111,12 +116,15 @@ const Collection: FunctionComponent = () => {
               user_key={element.user_key}
               title={element.title}
             />
-            <EuiButton size="s" onClick={onButtonClick}>
+            <EuiButton size="s" onClick={onButtonClick(index)}>
               투표하기
             </EuiButton>
+            <span style={{ marginLeft: '10px' }}>
+              { randomIntList[index] }
+            </span>
           </div>
         );
-      })}
+      })} 
     </div>
   );
 };
